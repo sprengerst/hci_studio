@@ -14,16 +14,13 @@
  * limitations under the License.
  */
 
-package xyz.belvi.mobilevisionbarcodesample;
+package com.inspirational.qr;
 
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SwitchCompat;
 import android.util.Log;
 import android.util.SparseArray;
-import android.view.View;
-import android.widget.CheckBox;
 
 import com.google.android.gms.samples.vision.barcodereader.BarcodeCapture;
 import com.google.android.gms.samples.vision.barcodereader.BarcodeGraphic;
@@ -32,14 +29,15 @@ import com.google.android.gms.vision.barcode.Barcode;
 import java.util.List;
 
 import xyz.belvi.mobilevisionbarcodescanner.BarcodeRetriever;
+import xyz.belvi.qr.R;
 
-import static xyz.belvi.mobilevisionbarcodesample.R.id.barcode;
+import static xyz.belvi.qr.R.id.barcode;
 
 /**
  * Main activity demonstrating how to pass extra parameters to an activity that
  * reads barcodes.
  */
-public class MainActivity extends AppCompatActivity implements BarcodeRetriever {
+public class MovementActivity extends AppCompatActivity implements BarcodeRetriever {
 
     // use a compound button so either checkbox or switch widgets work.
 
@@ -49,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements BarcodeRetriever 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_movement);
 
         final BarcodeCapture barcodeCapture = (BarcodeCapture) getSupportFragmentManager().findFragmentById(barcode);
         barcodeCapture.setRetrieval(this);
@@ -88,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements BarcodeRetriever 
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
+                AlertDialog.Builder builder = new AlertDialog.Builder(MovementActivity.this)
                         .setTitle("code retrieved")
                         .setMessage(barcode.displayValue);
                 builder.show();
@@ -109,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements BarcodeRetriever 
                     Barcode barcode = barcodeGraphics.get(index).getBarcode();
                     message += (index + 1) + ". " + barcode.displayValue + "\n";
                 }
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
+                AlertDialog.Builder builder = new AlertDialog.Builder(MovementActivity.this)
                         .setTitle("code retrieved")
                         .setMessage(message);
                 builder.show();
