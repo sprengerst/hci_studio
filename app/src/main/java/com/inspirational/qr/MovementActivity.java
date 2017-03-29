@@ -31,7 +31,6 @@ import java.util.List;
 import xyz.belvi.mobilevisionbarcodescanner.BarcodeRetriever;
 import xyz.belvi.qr.R;
 
-import static xyz.belvi.qr.R.id.barcode;
 
 /**
  * Main activity demonstrating how to pass extra parameters to an activity that
@@ -49,7 +48,7 @@ public class MovementActivity extends AppCompatActivity implements BarcodeRetrie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movement);
 
-        final BarcodeCapture barcodeCapture = (BarcodeCapture) getSupportFragmentManager().findFragmentById(barcode);
+        final BarcodeCapture barcodeCapture = (BarcodeCapture) getSupportFragmentManager().findFragmentById(R.id.barcode);
         barcodeCapture.setRetrieval(this);
 
 
