@@ -46,9 +46,6 @@ public class MainActivity extends AppCompatActivity implements BarcodeRetriever 
 
     private static final String TAG = "BarcodeMain";
 
-    CheckBox fromXMl;
-    SwitchCompat drawRect, autoFocus, supportMultiple, touchBack, drawText;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,28 +54,30 @@ public class MainActivity extends AppCompatActivity implements BarcodeRetriever 
         final BarcodeCapture barcodeCapture = (BarcodeCapture) getSupportFragmentManager().findFragmentById(barcode);
         barcodeCapture.setRetrieval(this);
 
-        fromXMl = (CheckBox) findViewById(R.id.from_xml);
-        drawRect = (SwitchCompat) findViewById(R.id.draw_rect);
-        autoFocus = (SwitchCompat) findViewById(R.id.focus);
-        supportMultiple = (SwitchCompat) findViewById(R.id.support_multiple);
-        touchBack = (SwitchCompat) findViewById(R.id.touch_callback);
-        drawText = (SwitchCompat) findViewById(R.id.draw_text);
 
-        findViewById(R.id.refresh).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (fromXMl.isChecked()) {
+        barcodeCapture.setShowDrawRect(true);
+        barcodeCapture.setSupportMultipleScan(true);
+        barcodeCapture.setTouchAsCallback(false);
+        barcodeCapture.shouldAutoFocus(true);
+        barcodeCapture.setShouldShowText(false);
+        barcodeCapture.refresh();
 
-                } else {
-                    barcodeCapture.setShowDrawRect(drawRect.isChecked());
-                    barcodeCapture.setSupportMultipleScan(supportMultiple.isChecked());
-                    barcodeCapture.setTouchAsCallback(touchBack.isChecked());
-                    barcodeCapture.shouldAutoFocus(autoFocus.isChecked());
-                    barcodeCapture.setShouldShowText(drawText.isChecked());
-                    barcodeCapture.refresh();
-                }
-            }
-        });
+//        findViewById(R.id.refresh).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (fromXMl.isChecked()) {
+//
+//                } else {
+//                    barcodeCapture.setShowDrawRect(drawRect.isChecked());
+//                    barcodeCapture.setSupportMultipleScan(supportMultiple.isChecked());
+//
+//                    barcodeCapture.setTouchAsCallback(touchBack.isChecked());
+//                    barcodeCapture.shouldAutoFocus(autoFocus.isChecked());
+//                    barcodeCapture.setShouldShowText(drawText.isChecked());
+//                    barcodeCapture.refresh();
+//                }
+//            }
+//        });
 
     }
 
