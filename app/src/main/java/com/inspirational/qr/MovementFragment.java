@@ -34,7 +34,7 @@ public class MovementFragment extends Fragment  implements BarcodeRetriever {
         barcodeCapture.setRetrieval(this);
 
         barcodeCapture.setShowDrawRect(true);
-        barcodeCapture.setSupportMultipleScan(true);
+        barcodeCapture.setSupportMultipleScan(false);
         barcodeCapture.setTouchAsCallback(false);
         barcodeCapture.shouldAutoFocus(true);
         barcodeCapture.setShouldShowText(false);
@@ -67,36 +67,37 @@ public class MovementFragment extends Fragment  implements BarcodeRetriever {
     @Override
     public void onRetrieved(final Barcode barcode) {
         Log.d("MFG", "Barcode read: " + barcode.displayValue);
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext())
-                        .setTitle("code retrieved")
-                        .setMessage(barcode.displayValue);
-                builder.show();
-            }
-        });
+//        getActivity().runOnUiThread(new Runnable() {
+//            @Override
+//            public void run() {
+//                AlertDialog.Builder builder = new AlertDialog.Builder(getContext())
+//                        .setTitle("code retrieved")
+//                        .setMessage(barcode.displayValue);
+//                builder.show();
+//            }
+//        });
 
 
     }
 
     @Override
     public void onRetrievedMultiple(final Barcode closetToClick, final List<BarcodeGraphic> barcodeGraphics) {
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                String message = "Code selected : " + closetToClick.displayValue + "\n\nother " +
-                        "codes in frame include : \n";
-                for (int index = 0; index < barcodeGraphics.size(); index++) {
-                    Barcode barcode = barcodeGraphics.get(index).getBarcode();
-                    message += (index + 1) + ". " + barcode.displayValue + "\n";
-                }
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext())
-                        .setTitle("code retrieved")
-                        .setMessage(message);
-                builder.show();
-            }
-        });
+        Log.d("MF","FOUND BARCODE MULTIPLE");
+//        getActivity().runOnUiThread(new Runnable() {
+//            @Override
+//            public void run() {
+//                String message = "Code selected : " + closetToClick.displayValue + "\n\nother " +
+//                        "codes in frame include : \n";
+//                for (int index = 0; index < barcodeGraphics.size(); index++) {
+//                    Barcode barcode = barcodeGraphics.get(index).getBarcode();
+//                    message += (index + 1) + ". " + barcode.displayValue + "\n";
+//                }
+//                AlertDialog.Builder builder = new AlertDialog.Builder(getContext())
+//                        .setTitle("code retrieved")
+//                        .setMessage(message);
+//                builder.show();
+//            }
+//        });
 
     }
 

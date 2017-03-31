@@ -160,6 +160,7 @@ public final class BarcodeCapture extends BarcodeFragment {
         BarcodeTrackerFactory barcodeFactory = new BarcodeTrackerFactory(mGraphicOverlay) {
             @Override
             void onCodeDetected(Barcode barcode) {
+                Log.d("BC","Barcode detected");
                 if (!isTouchAsCallback() && !supportMultipleScan()) {
                     barcodeRetriever.onRetrieved(barcode);
                 }
