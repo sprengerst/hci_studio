@@ -17,18 +17,10 @@
 package com.inspirational.qr;
 
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.util.SparseArray;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
-import com.google.android.gms.samples.vision.barcodereader.BarcodeCapture;
-import com.google.android.gms.samples.vision.barcodereader.BarcodeGraphic;
-import com.google.android.gms.vision.barcode.Barcode;
-
-import java.util.List;
-
-import xyz.belvi.mobilevisionbarcodescanner.BarcodeRetriever;
 import xyz.belvi.qr.R;
 
 
@@ -36,94 +28,37 @@ import xyz.belvi.qr.R;
  * Main activity demonstrating how to pass extra parameters to an activity that
  * reads barcodes.
  */
-public class MovementActivity extends AppCompatActivity implements BarcodeRetriever {
+public class MovementActivity extends AppCompatActivity {
 
     // use a compound button so either checkbox or switch widgets work.
-
-
-    private static final String TAG = "BarcodeMain";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_movement);
 
-        final BarcodeCapture barcodeCapture = (BarcodeCapture) getSupportFragmentManager().findFragmentById(R.id.barcode);
-        barcodeCapture.setRetrieval(this);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_home);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
 
-
-        barcodeCapture.setShowDrawRect(true);
-        barcodeCapture.setSupportMultipleScan(true);
-        barcodeCapture.setTouchAsCallback(false);
-        barcodeCapture.shouldAutoFocus(true);
-        barcodeCapture.setShouldShowText(false);
-        barcodeCapture.refresh();
-
-//        findViewById(R.id.refresh).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (fromXMl.isChecked()) {
-//
-//                } else {
-//                    barcodeCapture.setShowDrawRect(drawRect.isChecked());
-//                    barcodeCapture.setSupportMultipleScan(supportMultiple.isChecked());
-//
-//                    barcodeCapture.setTouchAsCallback(touchBack.isChecked());
-//                    barcodeCapture.shouldAutoFocus(autoFocus.isChecked());
-//                    barcodeCapture.setShouldShowText(drawText.isChecked());
-//                    barcodeCapture.refresh();
-//                }
-//            }
-//        });
-
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.container, new MovementFragment())
+                    .commit();
+        }
     }
 
-
     @Override
-    public void onRetrieved(final Barcode barcode) {
-        Log.d(TAG, "Barcode read: " + barcode.displayValue);
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MovementActivity.this)
-                        .setTitle("code retrieved")
-                        .setMessage(barcode.displayValue);
-                builder.show();
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case android.R.id.home: {
+                finish();
             }
-        });
-
-
+        }
+        return super.onOptionsItemSelected(item);
     }
-
-    @Override
-    public void onRetrievedMultiple(final Barcode closetToClick, final List<BarcodeGraphic> barcodeGraphics) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                String message = "Code selected : " + closetToClick.displayValue + "\n\nother " +
-                        "codes in frame include : \n";
-                for (int index = 0; index < barcodeGraphics.size(); index++) {
-                    Barcode barcode = barcodeGraphics.get(index).getBarcode();
-                    message += (index + 1) + ". " + barcode.displayValue + "\n";
-                }
-                AlertDialog.Builder builder = new AlertDialog.Builder(MovementActivity.this)
-                        .setTitle("code retrieved")
-                        .setMessage(message);
-                builder.show();
-            }
-        });
-
-    }
-
-    @Override
-    public void onBitmapScanned(SparseArray<Barcode> sparseArray) {
-
-    }
-
-    @Override
-    public void onRetrievedFailed(String reason) {
-
-    }
-
-
 }
