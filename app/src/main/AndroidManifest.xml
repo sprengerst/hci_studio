@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.inspirational.qr.MovementColorActivity"/>
+        <activity android:name="com.inspirational.qr.MovementColorActivity"
+            android:label="Movement Color Game"/>
 
     </application>
 

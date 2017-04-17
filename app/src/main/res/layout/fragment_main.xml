@@ -6,7 +6,7 @@
     android:paddingTop="?attr/actionBarSize">
     <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Movement Example"
+        android:layout_height="70dp"
+        android:text="Movement Color Game"
         android:id="@+id/movement_btn"/>
 </LinearLayout>

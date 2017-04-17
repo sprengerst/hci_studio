@@ -31,6 +31,18 @@
 
         </FrameLayout>
 
+
+
+        <Chronometer
+            android:id="@+id/game_time"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="10"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textSize="40sp" />
+
         <Button
             android:id="@+id/start_game_btn"
             android:layout_width="match_parent"
@@ -38,16 +50,14 @@
             android:layout_weight="10"
             android:text="Start Game" />
 
-        <TextView
-            android:id="@+id/game_time"
+        <Button
+            android:id="@+id/stop_game_btn"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_gravity="center"
             android:layout_weight="10"
-            android:gravity="center"
-            android:text="00:00:00"
-            android:textAlignment="center"
-            android:textSize="40sp" />
+            android:text="Stop Game"
+            android:visibility="gone"/>
+
     </LinearLayout>
 
 
