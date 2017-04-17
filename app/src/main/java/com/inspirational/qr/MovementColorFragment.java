@@ -21,7 +21,8 @@ public class MovementColorFragment extends Fragment {
 
     private View nextColorIndicator;
 
-    int[] gameTry = new int[]{1, 2, 3, 2, 3};
+    // hear you can specify the order of the qr codes to be scanned
+    int[] gameTry = new int[]{1, 2, 3, 4, 5, 6, 3, 2, 1};
 
     int currentPos = 0;
 

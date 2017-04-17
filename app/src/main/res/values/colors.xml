@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="primary">#8BC34A</color>
     <color name="primary_dark">#689F38</color>
     <color name="primary_light">#DCEDC8</color>
@@ -9,14 +10,14 @@
     <color name="icons">#212121</color>
     <color name="divider">#BDBDBD</color>
 
-
     <color name="mov_col_1">#ff00f7</color>
     <color name="mov_col_2">#0900ff</color>
     <color name="mov_col_3">#00ff09</color>
+    <color name="mov_col_4">#EEFF00</color>
+    <color name="mov_col_5">#00FFFF</color>
+    <color name="mov_col_6">#FF0000</color>
 
     <color name="transparent">#00ffffff</color>
     <color name="white">#fff</color>
-
-
 
 </resources>
