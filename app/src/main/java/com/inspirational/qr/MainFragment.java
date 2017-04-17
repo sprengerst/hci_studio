@@ -52,7 +52,7 @@ public class MainFragment extends Fragment{
             movementExampleBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(getActivity(),MovementActivity.class));
+                    startActivity(new Intent(getActivity(),MovementColorActivity.class));
                 }
             });
 

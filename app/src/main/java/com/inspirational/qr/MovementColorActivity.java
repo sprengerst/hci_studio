@@ -27,14 +27,14 @@ import android.view.MenuItem;
  * Main activity demonstrating how to pass extra parameters to an activity that
  * reads barcodes.
  */
-public class MovementActivity extends AppCompatActivity {
+public class MovementColorActivity extends AppCompatActivity {
 
     // use a compound button so either checkbox or switch widgets work.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_movement);
+        setContentView(R.layout.activity_movement_color);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_home);
         setSupportActionBar(toolbar);
@@ -45,7 +45,7 @@ public class MovementActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new MovementFragment())
+                    .add(R.id.container, new MovementColorFragment())
                     .commit();
         }
     }
