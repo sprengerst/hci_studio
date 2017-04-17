@@ -4,8 +4,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Toast;
 
-import xyz.belvi.qr.R;
+import com.gun0912.tedpermission.PermissionListener;
+
+import java.util.ArrayList;
 
 
 /*
@@ -45,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 
 
 }

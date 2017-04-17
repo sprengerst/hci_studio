@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/hci_studio.iml" filepath="$PROJECT_DIR$/hci_studio.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mobilevisionbarcodescanner/mobilevisionbarcodescanner.iml" filepath="$PROJECT_DIR$/mobilevisionbarcodescanner/mobilevisionbarcodescanner.iml" />
     </modules>
   </component>
 </project>

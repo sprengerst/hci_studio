@@ -11,16 +11,11 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <fragment
-            android:id="@+id/barcode"
-            android:name="com.google.android.gms.samples.vision.barcodereader.BarcodeCapture"
+        <com.dlazaro66.qrcodereaderview.QRCodeReaderView
+            android:id="@+id/qrdecoderview"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="80"
-            app:gvb_auto_focus="true"
-            app:gvb_code_format="all_format"
-            app:gvb_flash="false"
-            app:gvb_rect_colors="@array/rect_color" />
+            android:layout_weight="80" />
 
         <Button
             android:id="@+id/start_game_btn"
