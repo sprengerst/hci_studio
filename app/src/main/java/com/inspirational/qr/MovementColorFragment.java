@@ -1,7 +1,9 @@
 package com.inspirational.qr;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.os.Vibrator;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -93,6 +95,9 @@ public class MovementColorFragment extends Fragment {
                     Log.d(LOG_TAG, "Data read " + data);
                     if (data.equals("id=" + gameTry[currentPos])) {
                         Log.d(LOG_TAG, "Found right QR Code " + data);
+
+                        Vibrator vibe = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                        vibe.vibrate(100);
 
                         currentPos++;
 
