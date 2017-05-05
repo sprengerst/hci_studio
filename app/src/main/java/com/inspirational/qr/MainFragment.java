@@ -25,6 +25,7 @@ public class MainFragment extends Fragment{
 
     private View rootView;
     private Button movementExampleBtn;
+    private Button validQRBtn;
 
 
     @Override
@@ -34,6 +35,7 @@ public class MainFragment extends Fragment{
         rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
         movementExampleBtn = (Button) rootView.findViewById(R.id.movement_btn);
+        validQRBtn = (Button) rootView.findViewById(R.id.validate_btn);
 
         new TedPermission(getActivity())
                 .setPermissionListener(cameraPermissionlistener)
@@ -53,6 +55,13 @@ public class MainFragment extends Fragment{
                 @Override
                 public void onClick(View v) {
                     startActivity(new Intent(getActivity(),MovementColorActivity.class));
+                }
+            });
+
+            validQRBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(getActivity(),ValidQRActivity.class));
                 }
             });
 

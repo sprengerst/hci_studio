@@ -22,6 +22,11 @@
         <activity android:name="com.inspirational.qr.MovementColorActivity"
             android:label="Movement Color Game"/>
 
+
+        <activity android:name="com.inspirational.qr.ValidQRActivity"
+            android:label="QR Code Validator"/>
+
+
     </application>
 
 </manifest>

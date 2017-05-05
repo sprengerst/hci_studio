@@ -9,4 +9,11 @@
         android:layout_height="70dp"
         android:text="Movement Color Game"
         android:id="@+id/movement_btn"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:text="QR Code Validator"
+        android:id="@+id/validate_btn"/>
+
 </LinearLayout>

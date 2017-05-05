@@ -20,4 +20,7 @@
     <color name="transparent">#00ffffff</color>
     <color name="white">#fff</color>
 
+    <color name="valid_qr_found">#00ff09</color>
+    <color name="valid_qr_not_found">#FF0000</color>
+
 </resources>
