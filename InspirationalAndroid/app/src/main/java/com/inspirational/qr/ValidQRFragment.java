@@ -25,6 +25,7 @@ public class ValidQRFragment extends Fragment {
     private long lastRecognisedTimeStamp = -1;
 
     private static final String LOG_TAG = "MCFR";
+    private Timer mResetToRedTimer;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,8 +34,8 @@ public class ValidQRFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_valid_qr, container, false);
         mHolder = (SurfaceView) rootView.findViewById(R.id.qrdecoderview);
 
-        Timer resetToRedTimer = new Timer();
-        resetToRedTimer.schedule(new TimerTask() {
+        mResetToRedTimer = new Timer();
+        mResetToRedTimer.schedule(new TimerTask() {
             @Override
             public void run() {
                 Log.d(LOG_TAG," TIMER TRIGGER ");
@@ -87,5 +88,10 @@ public class ValidQRFragment extends Fragment {
     }
 
 
-
+    public void stopTimer() {
+        if(mResetToRedTimer != null){
+            mResetToRedTimer.cancel();
+            mResetToRedTimer.purge();
+        }
+    }
 }

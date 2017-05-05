@@ -28,6 +28,8 @@ import android.view.MenuItem;
  */
 public class ValidQRActivity extends AppCompatActivity {
 
+
+    private ValidQRFragment validQRFragment;
     // use a compound button so either checkbox or switch widgets work.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +45,9 @@ public class ValidQRActivity extends AppCompatActivity {
         }
 
         if (savedInstanceState == null) {
+            validQRFragment = new ValidQRFragment();
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new ValidQRFragment())
+                    .add(R.id.container, validQRFragment)
                     .commit();
         }
     }
@@ -58,5 +61,13 @@ public class ValidQRActivity extends AppCompatActivity {
             }
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onDestroy() {
+        if(validQRFragment != null) {
+            validQRFragment.stopTimer();
+        }
+        super.onDestroy();
     }
 }

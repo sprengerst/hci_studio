@@ -12,19 +12,28 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.inspirational.qr.MainActivity">
+        <activity
+            android:name="com.inspirational.qr.MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name="com.inspirational.qr.MovementColorActivity"
-            android:label="Movement Color Game"/>
+        <activity
+            android:name="com.inspirational.qr.MovementColorActivity"
+            android:configChanges="orientation"
+            android:label="Movement Color Game"
+            android:screenOrientation="portrait" />
 
 
-        <activity android:name="com.inspirational.qr.ValidQRActivity"
-            android:label="QR Code Validator"/>
+        <activity
+            android:name="com.inspirational.qr.ValidQRActivity"
+            android:configChanges="orientation"
+            android:label="QR Code Validator"
+            android:screenOrientation="portrait" />
 
 
     </application>
