@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_dt_solution" default="compile.module.dt_solution">
+  <dirname property="module.dt_solution.basedir" file="${ant.file.module_dt_solution}"/>
+  
+  <property name="module.jdk.home.dt_solution" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.dt_solution" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.dt_solution" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.dt_solution" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="dt_solution.output.dir" value="${module.dt_solution.basedir}/out/production/DT_Solution"/>
+  <property name="dt_solution.testoutput.dir" value="${module.dt_solution.basedir}/out/test/DT_Solution"/>
+  
+  <path id="dt_solution.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="dt_solution.module.production.classpath">
+    <path refid="${module.jdk.classpath.dt_solution}"/>
+    <path refid="library.json-simple-1.1.classpath"/>
+  </path>
+  
+  <path id="dt_solution.runtime.production.module.classpath">
+    <pathelement location="${dt_solution.output.dir}"/>
+    <path refid="library.json-simple-1.1.classpath"/>
+  </path>
+  
+  <path id="dt_solution.module.classpath">
+    <path refid="${module.jdk.classpath.dt_solution}"/>
+    <pathelement location="${dt_solution.output.dir}"/>
+    <path refid="library.json-simple-1.1.classpath"/>
+  </path>
+  
+  <path id="dt_solution.runtime.module.classpath">
+    <pathelement location="${dt_solution.testoutput.dir}"/>
+    <pathelement location="${dt_solution.output.dir}"/>
+    <path refid="library.json-simple-1.1.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.dt_solution">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.dt_solution">
+    <patternset refid="excluded.from.module.dt_solution"/>
+  </patternset>
+  
+  <path id="dt_solution.module.sourcepath">
+    <dirset dir="${module.dt_solution.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.dt_solution" depends="compile.module.dt_solution.production,compile.module.dt_solution.tests" description="Compile module DT_Solution"/>
+  
+  <target name="compile.module.dt_solution.production" depends="register.custom.compilers" description="Compile module DT_Solution; production classes">
+    <mkdir dir="${dt_solution.output.dir}"/>
+    <javac2 destdir="${dt_solution.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.dt_solution}/javac">
+      <compilerarg line="${compiler.args.dt_solution}"/>
+      <bootclasspath refid="dt_solution.module.bootclasspath"/>
+      <classpath refid="dt_solution.module.production.classpath"/>
+      <src refid="dt_solution.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.dt_solution"/>
+    </javac2>
+    
+    <copy todir="${dt_solution.output.dir}">
+      <fileset dir="${module.dt_solution.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.dt_solution.tests" depends="register.custom.compilers,compile.module.dt_solution.production" description="compile module DT_Solution; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.dt_solution" description="cleanup module">
+    <delete dir="${dt_solution.output.dir}"/>
+    <delete dir="${dt_solution.testoutput.dir}"/>
+  </target>
+</project>
