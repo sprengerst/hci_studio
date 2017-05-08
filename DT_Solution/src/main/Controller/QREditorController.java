@@ -83,7 +83,7 @@ public class QREditorController implements Initializable {
         mSizeSlider.valueProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> ov,
                                 Number old_val, Number new_val) {
-                mImageView.setFitHeight(originalSize * (new_val.doubleValue() / 100));
+                mImageView.setFitHeight(originalSize * ((new_val.doubleValue()+1) / 100));
             }
         });
 
@@ -239,9 +239,9 @@ public class QREditorController implements Initializable {
 
         //DropShadow effect
         DropShadow dropShadow = new DropShadow();
-        dropShadow.setRadius(5.0);
-        dropShadow.setOffsetX(10.0);
-        dropShadow.setOffsetY(5.0);
+        dropShadow.setRadius(10.0);
+        dropShadow.setOffsetX(20.0);
+        dropShadow.setOffsetY(10.0);
         dropShadow.setColor(Color.GREY);
 
         //GaussianBlur effect
@@ -265,8 +265,6 @@ public class QREditorController implements Initializable {
         MotionBlur motionBlur = new MotionBlur();
         motionBlur.setRadius(30);
         motionBlur.setAngle(-15.0);
-
-
 
         //Reflection effect
         Reflection reflection = new Reflection();

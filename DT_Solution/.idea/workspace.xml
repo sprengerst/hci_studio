@@ -67,8 +67,8 @@
       <file leaf-file-name="QREditorController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/Controller/QREditorController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
-              <caret line="224" column="0" lean-forward="true" selection-start-line="224" selection-start-column="0" selection-end-line="224" selection-end-column="0" />
+            <state relative-caret-position="453">
+              <caret line="86" column="13" lean-forward="true" selection-start-line="86" selection-start-column="13" selection-end-line="86" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -156,7 +156,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>initCustomers</find>
       <find>updateView</find>
       <find>wrapAvailableElementsAndFilter</find>
       <find>updateView(</find>
@@ -186,6 +185,7 @@
       <find>imageInput</find>
       <find>PerspectiveTra</find>
       <find>Inner</find>
+      <find>SizeSlider</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -872,12 +872,12 @@
       <workItem from="1494068797533" duration="135000" />
       <workItem from="1494090865749" duration="1003000" />
       <workItem from="1494175354935" duration="2473000" />
-      <workItem from="1494242355292" duration="8303000" />
+      <workItem from="1494242355292" duration="8544000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="192020000" />
+    <option name="totallyTimeSpent" value="192261000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1920" height="1011" extended-state="6" />
@@ -1110,8 +1110,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Controller/QREditorController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="224" column="0" lean-forward="true" selection-start-line="224" selection-start-column="0" selection-end-line="224" selection-end-column="0" />
+        <state relative-caret-position="453">
+          <caret line="86" column="13" lean-forward="true" selection-start-line="86" selection-start-column="13" selection-end-line="86" selection-end-column="13" />
           <folding />
         </state>
       </provider>
