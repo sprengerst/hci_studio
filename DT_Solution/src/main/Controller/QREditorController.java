@@ -44,7 +44,7 @@ public class QREditorController implements Initializable {
     Color mBackgroundColor = Color.WHITE;
     Effect effects[];
     ObservableList<String> effectNames = FXCollections.observableArrayList();
-    private double originalSize = 750;
+    private double originalSize = 650;
     private MainController mMainController;
     final Image image = new Image("/qrcode.png", originalSize, originalSize, true, false);
 
