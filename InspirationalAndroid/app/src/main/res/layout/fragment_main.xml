@@ -16,4 +16,10 @@
         android:text="QR Code Validator"
         android:id="@+id/validate_btn"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:text="Labyrinth Game"
+        android:id="@+id/labyrinth"/>
+
 </LinearLayout>

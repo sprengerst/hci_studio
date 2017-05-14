@@ -35,6 +35,12 @@
             android:label="QR Code Validator"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name="com.inspirational.qr.LabyrinthActivity"
+            android:configChanges="orientation"
+            android:label="Labyrinth Game"
+            android:screenOrientation="portrait" />
+
 
     </application>
 

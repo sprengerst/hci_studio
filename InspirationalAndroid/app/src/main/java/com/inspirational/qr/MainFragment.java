@@ -26,6 +26,7 @@ public class MainFragment extends Fragment{
     private View rootView;
     private Button movementExampleBtn;
     private Button validQRBtn;
+    private Button labyrinthBtn;
 
 
     @Override
@@ -36,6 +37,7 @@ public class MainFragment extends Fragment{
 
         movementExampleBtn = (Button) rootView.findViewById(R.id.movement_btn);
         validQRBtn = (Button) rootView.findViewById(R.id.validate_btn);
+        labyrinthBtn = (Button) rootView.findViewById(R.id.labyrinth);
 
         new TedPermission(getActivity())
                 .setPermissionListener(cameraPermissionlistener)
@@ -62,6 +64,13 @@ public class MainFragment extends Fragment{
                 @Override
                 public void onClick(View v) {
                     startActivity(new Intent(getActivity(),ValidQRActivity.class));
+                }
+            });
+
+            labyrinthBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(getActivity(),LabyrinthActivity.class));
                 }
             });
 
