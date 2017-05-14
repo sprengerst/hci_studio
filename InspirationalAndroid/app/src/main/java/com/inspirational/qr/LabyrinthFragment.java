@@ -25,12 +25,11 @@ public class LabyrinthFragment extends Fragment {
     private TextView nextLetterIndicator;
 
     // hear you can specify the order of the qr codes to be scanned
-    final String[] correctPath = {"A", "C"};//, "E", "I", "K", "P", "R", "T", "Z"};
-
+    // atm its set for proof of concept
+    final String[] correctPath = {"A", "C", "E", "I"}; //, "K", "P", "R", "T", "Z"};
 
     private QREader mQRReaderView;
     private SurfaceView mHolder;
-
 
     private static final String LOG_TAG = "LF";
     private boolean isPlaying = false;
