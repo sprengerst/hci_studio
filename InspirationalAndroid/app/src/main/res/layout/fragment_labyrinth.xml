@@ -23,14 +23,15 @@
 
             <TextView
                 android:id="@+id/next_letter_indicator"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
+                android:layout_width="180dp"
+                android:layout_height="200dp"
                 android:layout_gravity="bottom|end"
-                android:layout_margin="20dp"
                 android:gravity="center"
                 android:text="A"
-                android:textColor="@color/accent"
-                android:textSize="80sp" />
+                android:textColor="@color/orange"
+                android:textSize="170sp"
+                android:layout_margin="20dp"
+                android:visibility="invisible"/>
 
         </FrameLayout>
 

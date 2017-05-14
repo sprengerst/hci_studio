@@ -28,6 +28,8 @@ import android.view.MenuItem;
  */
 public class LabyrinthActivity extends AppCompatActivity {
 
+    private LabyrinthFragment mLabyrinthFragment;
+
     // use a compound button so either checkbox or switch widgets work.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +45,10 @@ public class LabyrinthActivity extends AppCompatActivity {
         }
 
         if (savedInstanceState == null) {
+            mLabyrinthFragment = new LabyrinthFragment();
+
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new LabyrinthFragment())
+                    .add(R.id.container, mLabyrinthFragment)
                     .commit();
         }
     }
@@ -58,5 +62,13 @@ public class LabyrinthActivity extends AppCompatActivity {
             }
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onDestroy() {
+        if(mLabyrinthFragment != null) {
+            mLabyrinthFragment.stopTimer();
+        }
+        super.onDestroy();
     }
 }

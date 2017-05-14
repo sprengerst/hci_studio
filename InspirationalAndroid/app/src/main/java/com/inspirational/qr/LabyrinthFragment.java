@@ -13,6 +13,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import github.nisrulz.qreader.QRDataListener;
 import github.nisrulz.qreader.QREader;
 
@@ -33,6 +36,8 @@ public class LabyrinthFragment extends Fragment {
     private boolean isPlaying = false;
     private Button mStartGameBtn;
     private Button mStopGameBtn;
+    private Timer mResetStatusTextViewTimer;
+    private long mLastRecognisedTimeStamp = -1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,7 +55,6 @@ public class LabyrinthFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startGame();
-
             }
         });
 
@@ -60,6 +64,25 @@ public class LabyrinthFragment extends Fragment {
                 resetGame();
             }
         });
+
+        mResetStatusTextViewTimer = new Timer();
+        mResetStatusTextViewTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if(isPlaying) {
+                    Log.d(LOG_TAG, " TIMER TRIGGER ");
+                    if (mLastRecognisedTimeStamp + 150 < System.currentTimeMillis()) {
+                        Log.d(LOG_TAG, " No active QR Code detected, view set to invisble ");
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                nextLetterIndicator.setVisibility(View.INVISIBLE);
+                            }
+                        });
+                    }
+                }
+            }
+        }, 0, 100);
 
         // Game mechanic goes here
         mQRReaderView = new QREader.Builder(getActivity(), mHolder, new QRDataListener() {
@@ -73,6 +96,8 @@ public class LabyrinthFragment extends Fragment {
                         if (index != -1) {
                             Log.d(LOG_TAG, "Found index at: " + index + " from " + correctPath.length);
                             if ((index + 1) < correctPath.length) {
+                                mLastRecognisedTimeStamp = System.currentTimeMillis();
+
                                 getActivity().runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
@@ -81,14 +106,14 @@ public class LabyrinthFragment extends Fragment {
                                     }
                                 });
                             } else {
-                                showWinDialog();
+                                showDialog("Congratulations","You've won the game");
                                 resetGame();
                             }
                         } else {
-                            // BOMB
                             Log.d(LOG_TAG, "BOMB");
+                            showDialog("BOMB!!!","You lost the game");
                             Vibrator vibe = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-                            vibe.vibrate(100);
+                            vibe.vibrate(2000);
                             resetGame();
                         }
                     }
@@ -116,19 +141,20 @@ public class LabyrinthFragment extends Fragment {
                 isPlaying = false;
                 mStopGameBtn.setVisibility(View.GONE);
                 mStartGameBtn.setVisibility(View.VISIBLE);
+                nextLetterIndicator.setVisibility(View.INVISIBLE);
             }
         });
     }
 
-    private void showWinDialog() {
+    private void showDialog(String title, String subtitle) {
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
 
         // set title
-        alertDialogBuilder.setTitle("You won the game");
+        alertDialogBuilder.setTitle(title);
 
         // set dialog message
         alertDialogBuilder
-                .setMessage("Congratulations")
+                .setMessage(subtitle)
                 .setCancelable(true);
 
         getActivity().runOnUiThread(new Runnable() {
@@ -162,5 +188,12 @@ public class LabyrinthFragment extends Fragment {
         }
 
         return -1;
+    }
+
+    public void stopTimer() {
+        if(mResetStatusTextViewTimer != null){
+            mResetStatusTextViewTimer.cancel();
+            mResetStatusTextViewTimer.purge();
+        }
     }
 }

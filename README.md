@@ -2,8 +2,10 @@
 
 
 # Used QR Code Generators
-https://www.qrcode-monkey.de/#text
-http://qrcode.azurewebsites.net/
+
+### https://www.qrcode-monkey.de/#text
+
+### http://qrcode.azurewebsites.net/
 
 
 # Used QR Code Library 
