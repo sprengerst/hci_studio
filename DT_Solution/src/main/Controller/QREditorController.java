@@ -6,26 +6,41 @@
 package main.Controller;
 
 
+
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.Hashtable;
 import java.util.ResourceBundle;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
+import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.Slider;
 import javafx.scene.effect.*;
 import javafx.scene.image.*;
-import javafx.scene.paint.Color;
-
+import javafx.scene.image.Image;
+import javafx.geometry.Point2D;
+import javafx.scene.Cursor;
+import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 
 public class QREditorController implements Initializable {
 
@@ -34,40 +49,61 @@ public class QREditorController implements Initializable {
     @FXML
     Slider mSizeSlider,mEffectStrengthSlider,mOpacitySlider;
     @FXML
-    Button mButton;
+    Button mSubmitButton;
     @FXML
     ColorPicker mBackgroundColorPicker, mForegroundColorPicker;
     @FXML
-    ChoiceBox mChoiceBoxEffects;
-
+    ChoiceBox mChoiceBoxEffects,mErrorChoiceBox;
+    @FXML
+    TextArea mEncodeTextArea;
+    @FXML
+    BorderPane mBorderPane;
     private Color mForegroundColor = Color.BLACK;
     private Color mBackgroundColor = Color.WHITE;
     private double mOpacityStrength=1.0;
+    private double mEffectStrength=1.0;
+    private ErrorCorrectionLevel mErrorCorrectionLevel=ErrorCorrectionLevel.L;
+
     private Effect effects[];
     ObservableList<String> effectNames = FXCollections.observableArrayList();
     private double originalSize = 650;
     private MainController mMainController;
 
-    final Image image = new Image("/qrcode.png", originalSize, originalSize, true, false);
+    Image image = new Image("/qrcode.png", originalSize, originalSize, true, false);
     final Image backgroundImage=new Image("/background.png",originalSize,originalSize,true,false);
     public void setScene(MainController mainController) {
-
         mMainController = mainController;
     }
 
 
     @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
+        mEncodeTextArea.setText("Hallo Welt");
+
+
+        Rectangle rect = createDraggableRectangle(200, 200, 400, 300);
+        rect.setFill(Color.NAVY);
+
+        mBorderPane.getChildren().add(rect);
+
+        try {
+            image = SwingFXUtils.toFXImage(createQRImage(mEncodeTextArea.getText(), (int) originalSize,mErrorCorrectionLevel), null);
+        }catch(Exception ex){
+
+        }
+
+
         initEffects();
 
         mChoiceBoxEffects.getSelectionModel().selectFirst();
+        mErrorChoiceBox.getSelectionModel().selectFirst();
 
         mImageView.setPreserveRatio(true);
         mImageView.setFitHeight(originalSize * 0.5);
         mImageView.setImage(image);
 
         mBackgroundImageView.setPreserveRatio(true);
-        mBackgroundImageView.setFitHeight(originalSize);
+        mBackgroundImageView.setFitHeight(originalSize*0.5);
         mBackgroundImageView.setImage(backgroundImage);
 
 
@@ -86,7 +122,7 @@ public class QREditorController implements Initializable {
         //readImage();
         mOpacitySlider.setMin(0);
         mOpacitySlider.setMax(100);
-        mOpacitySlider.setValue(50);
+        mOpacitySlider.setValue(100);
         mOpacitySlider.setShowTickLabels(true);
         mOpacitySlider.setShowTickMarks(true);
 
@@ -94,6 +130,7 @@ public class QREditorController implements Initializable {
             public void changed(ObservableValue<? extends Number> ov,
                                 Number old_val, Number new_val) {
                 mImageView.setFitHeight(originalSize * ((new_val.doubleValue()+1) / 100));
+                mBackgroundImageView.setFitHeight(originalSize * ((new_val.doubleValue()+1) / 100));
             }
         });
 
@@ -108,26 +145,46 @@ public class QREditorController implements Initializable {
         mEffectStrengthSlider.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
-               int selectedIndex= mChoiceBoxEffects.getSelectionModel().getSelectedIndex();
-                if(selectedIndex==1){
-                    ((Bloom)effects[selectedIndex]).setThreshold(1-(new_val.doubleValue()/100));
-                    mImageView.setEffect(effects[selectedIndex]);
-                }
-                else if(selectedIndex==2){
-                    ((BoxBlur)effects[selectedIndex]).setIterations(new_val.intValue()/10);
-                    ((BoxBlur)effects[selectedIndex]).setHeight(new_val.doubleValue()/3);
-                    ((BoxBlur)effects[selectedIndex]).setWidth(new_val.doubleValue()/3);
-                    mImageView.setEffect(effects[selectedIndex]);
-                }else{
-                    System.err.println(selectedIndex);
-                }
+               int selectedIndex = mChoiceBoxEffects.getSelectionModel().getSelectedIndex();
+               mEffectStrength = new_val.doubleValue();
+               setEffect(selectedIndex);
+
             }
         });
+        mSubmitButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                try {
+                    image = SwingFXUtils.toFXImage(createQRImage(mEncodeTextArea.getText(), (int) originalSize, mErrorCorrectionLevel), null);
+                }catch(Exception ex){
+
+                }
+                mImageView.setImage(image);
+            }
+        });
+
+        mErrorChoiceBox.getSelectionModel().selectedIndexProperty()
+                .addListener((ObservableValue<? extends Number> observable,
+                              Number oldValue, Number newValue) -> {
+            switch(newValue.intValue()){
+                case 0: mErrorCorrectionLevel=ErrorCorrectionLevel.L;break;
+                case 1: mErrorCorrectionLevel=ErrorCorrectionLevel.M;break;
+                case 2: mErrorCorrectionLevel=ErrorCorrectionLevel.Q;break;
+                case 3: mErrorCorrectionLevel=ErrorCorrectionLevel.H;break;
+            }
+
+                });
+
 
         mChoiceBoxEffects.getSelectionModel().selectedIndexProperty()
                 .addListener((ObservableValue<? extends Number> observable,
                               Number oldValue, Number newValue) -> {
-                    mImageView.setEffect(effects[newValue.intValue()]);
+                    if(newValue.intValue()==2 || newValue.intValue()==3 || newValue.intValue()==7)
+                        mEffectStrengthSlider.setDisable(true);
+                    else{
+                        mEffectStrengthSlider.setDisable(false);
+                    }
+                    setEffect(newValue.intValue());
                 });
 
         mForegroundColorPicker.setValue(mForegroundColor);
@@ -156,12 +213,31 @@ public class QREditorController implements Initializable {
         });
 
 
-        /**  mButton.setOnAction(new EventHandler<ActionEvent>() {
-        @Override public void handle(ActionEvent e) {
-        mImageView.setImage(setBackgroundColor());
-        }
-        });**/
 
+    }
+
+    public void setEffect(int selectedIndex){
+         if(selectedIndex==1){
+            ((BoxBlur)effects[selectedIndex]).setIterations((int)(mEffectStrength/10));
+            ((BoxBlur)effects[selectedIndex]).setHeight(mEffectStrength/3);
+            ((BoxBlur)effects[selectedIndex]).setWidth(mEffectStrength/3);
+        }else if(selectedIndex==4){
+            //Disable effect strength slider
+            ((DropShadow)effects[selectedIndex]).setRadius(mEffectStrength);
+            ((DropShadow)effects[selectedIndex]).setOffsetX(mEffectStrength);
+            ((DropShadow)effects[selectedIndex]).setOffsetY(mEffectStrength);
+            ((DropShadow)effects[selectedIndex]).setColor(Color.GREY);
+        }else if(selectedIndex==5){
+            ((GaussianBlur)effects[selectedIndex]).setRadius((63*(int) mEffectStrength)/100);
+        }else if(selectedIndex==6){
+            ((Glow) effects[selectedIndex]).setLevel((mEffectStrength/100));
+        }else if(selectedIndex==8){
+            ((MotionBlur) effects[selectedIndex]).setRadius(mEffectStrength);
+        }else if(selectedIndex==9){
+            ((Reflection) effects[selectedIndex]).setFraction(mEffectStrength/100);
+        }
+
+        mImageView.setEffect(effects[selectedIndex]);
     }
 
 
@@ -220,10 +296,40 @@ public class QREditorController implements Initializable {
 
     }
 
+    private static BufferedImage createQRImage(String qrCodeText, int size, ErrorCorrectionLevel errorCorrectionLevel) throws WriterException, IOException {
+        // Create the ByteMatrix for the QR-Code that encodes the given String
+        Hashtable hintMap = new Hashtable();
+        hintMap.put(EncodeHintType.ERROR_CORRECTION, errorCorrectionLevel);
+        QRCodeWriter qrCodeWriter = new QRCodeWriter();
+        BitMatrix byteMatrix = qrCodeWriter.encode(qrCodeText,
+                BarcodeFormat.QR_CODE, size, size, hintMap);
+        // Make the BufferedImage that are to hold the QRCode
+        int matrixWidth = byteMatrix.getWidth();
+        BufferedImage image = new BufferedImage(matrixWidth, matrixWidth,
+                BufferedImage.TYPE_INT_RGB);
+        image.createGraphics();
+
+        Graphics2D graphics = (Graphics2D) image.getGraphics();
+        graphics.setColor(java.awt.Color.white);
+        graphics.fillRect(0, 0, matrixWidth, matrixWidth);
+        // Paint and save the image using the ByteMatrix
+        graphics.setColor(java.awt.Color.black);
+
+        for (int i = 0; i < matrixWidth; i++) {
+            for (int j = 0; j < matrixWidth; j++) {
+                if (byteMatrix.get(i, j)) {
+                    graphics.fillRect(i, j, 1, 1);
+                }
+            }
+        }
+        return image;
+    }
+
 
     public void initEffects() {
-        //Bloom effect
-        Bloom bloom = new Bloom(0);
+        mEffectStrength = 50;
+
+
 
         //BoxBlur effect
         BoxBlur boxBlur = new BoxBlur();
@@ -237,8 +343,6 @@ public class QREditorController implements Initializable {
         colorAdjust.setHue(-0.05);
         colorAdjust.setBrightness(0.5);
         colorAdjust.setSaturation(0.5);
-
-
 
         //DisplacementMap effect
         FloatMap floatMap = new FloatMap();
@@ -263,24 +367,22 @@ public class QREditorController implements Initializable {
 
         //GaussianBlur effect
         GaussianBlur gaussianBlur = new GaussianBlur();
-
+        gaussianBlur.setRadius((63*50)/100);
         //Glow effect
         Glow glow = new Glow(1.0);
 
 
         //Lighting effect
         Light.Distant light = new Light.Distant();
-        light.setAzimuth(50.0);
-        light.setElevation(30.0);
+        light.setAzimuth(-135.0);
         light.setColor(Color.YELLOW);
-
         Lighting lighting = new Lighting();
         lighting.setLight(light);
-        lighting.setSurfaceScale(50.0);
+        lighting.setSurfaceScale(150.0f);
 
         //MotionBlur effect
         MotionBlur motionBlur = new MotionBlur();
-        motionBlur.setRadius(30);
+        motionBlur.setRadius(10);
         motionBlur.setAngle(-15.0);
 
         //Reflection effect
@@ -290,27 +392,147 @@ public class QREditorController implements Initializable {
 
         effects=new Effect[11];
         effects[0] = null;
-        effects[1] = bloom;
-        effects[2] = boxBlur;
-        effects[3] = colorAdjust;
-        effects[4] = displacementMap;
-        effects[5] = dropShadow;
-        effects[6] = gaussianBlur;
-        effects[7] = glow;
-        effects[8] = lighting;
-        effects[9] = motionBlur;
-        effects[10] = reflection;
+        effects[1] = boxBlur;
+        effects[2] = colorAdjust;
+        effects[3] = displacementMap;
+        effects[4] = dropShadow;
+        effects[5] = gaussianBlur;
+        effects[6] = glow;
+        effects[7] = lighting;
+        effects[8] = motionBlur;
+        effects[9] = reflection;
 
 
         mChoiceBoxEffects.setItems(
                 FXCollections.observableArrayList(
-                        "null", "Bloom", "BoxBlur", "ColorAdjust",
+                        "null", "BoxBlur", "ColorAdjust",
                         "DisplacementMap", "DropShadow",
                         "GaussianBlur", "Glow",
                         "Lighting", "MotionBlur",
                         "Reflection"
                 ));
+        mErrorChoiceBox.setItems(FXCollections.observableArrayList(
+                "Level L (7%)","Level M (15%)",
+                "Level Q (25%)","Level H (30%)"
+        ));
 
     }
 
+
+    private Rectangle createDraggableRectangle(double x, double y, double width, double height) {
+        final double handleRadius = 10 ;
+
+        Rectangle rect = new Rectangle(x, y, width, height);
+
+        // top left resize handle:
+        Circle resizeHandleNW = new Circle(handleRadius, Color.GOLD);
+        // bind to top left corner of Rectangle:
+        resizeHandleNW.centerXProperty().bind(rect.xProperty());
+        resizeHandleNW.centerYProperty().bind(rect.yProperty());
+
+        // bottom right resize handle:
+        Circle resizeHandleSE = new Circle(handleRadius, Color.GOLD);
+        // bind to bottom right corner of Rectangle:
+        resizeHandleSE.centerXProperty().bind(rect.xProperty().add(rect.widthProperty()));
+        resizeHandleSE.centerYProperty().bind(rect.yProperty().add(rect.heightProperty()));
+
+        // move handle:
+        Circle moveHandle = new Circle(handleRadius, Color.GOLD);
+        // bind to bottom center of Rectangle:
+        moveHandle.centerXProperty().bind(rect.xProperty().add(rect.widthProperty().divide(2)));
+        moveHandle.centerYProperty().bind(rect.yProperty().add(rect.heightProperty()));
+
+        // force circles to live in same parent as rectangle:
+        rect.parentProperty().addListener((obs, oldParent, newParent) -> {
+            for (Circle c : Arrays.asList(resizeHandleNW, resizeHandleSE, moveHandle)) {
+                Pane currentParent = (Pane)c.getParent();
+                if (currentParent != null) {
+                    currentParent.getChildren().remove(c);
+                }
+                ((Pane)newParent).getChildren().add(c);
+            }
+        });
+
+        Wrapper<Point2D> mouseLocation = new Wrapper<>();
+
+        setUpDragging(resizeHandleNW, mouseLocation) ;
+        setUpDragging(resizeHandleSE, mouseLocation) ;
+        setUpDragging(moveHandle, mouseLocation) ;
+
+        resizeHandleNW.setOnMouseDragged(event -> {
+            if (mouseLocation.value != null) {
+                double deltaX = event.getSceneX() - mouseLocation.value.getX();
+                double deltaY = event.getSceneY() - mouseLocation.value.getY();
+                double newX = rect.getX() + deltaX ;
+                if (newX >= handleRadius
+                        && newX <= rect.getX() + rect.getWidth() - handleRadius) {
+                    rect.setX(newX);
+                    rect.setWidth(rect.getWidth() - deltaX);
+                }
+                double newY = rect.getY() + deltaY ;
+                if (newY >= handleRadius
+                        && newY <= rect.getY() + rect.getHeight() - handleRadius) {
+                    rect.setY(newY);
+                    rect.setHeight(rect.getHeight() - deltaY);
+                }
+                mouseLocation.value = new Point2D(event.getSceneX(), event.getSceneY());
+            }
+        });
+
+        resizeHandleSE.setOnMouseDragged(event -> {
+            if (mouseLocation.value != null) {
+                double deltaX = event.getSceneX() - mouseLocation.value.getX();
+                double deltaY = event.getSceneY() - mouseLocation.value.getY();
+                double newMaxX = rect.getX() + rect.getWidth() + deltaX ;
+                if (newMaxX >= rect.getX()
+                        && newMaxX <= rect.getParent().getBoundsInLocal().getWidth() - handleRadius) {
+                    rect.setWidth(rect.getWidth() + deltaX);
+                }
+                double newMaxY = rect.getY() + rect.getHeight() + deltaY ;
+                if (newMaxY >= rect.getY()
+                        && newMaxY <= rect.getParent().getBoundsInLocal().getHeight() - handleRadius) {
+                    rect.setHeight(rect.getHeight() + deltaY);
+                }
+                mouseLocation.value = new Point2D(event.getSceneX(), event.getSceneY());
+            }
+        });
+
+        moveHandle.setOnMouseDragged(event -> {
+            if (mouseLocation.value != null) {
+                double deltaX = event.getSceneX() - mouseLocation.value.getX();
+                double deltaY = event.getSceneY() - mouseLocation.value.getY();
+                double newX = rect.getX() + deltaX ;
+                double newMaxX = newX + rect.getWidth();
+                if (newX >= handleRadius
+                        && newMaxX <= rect.getParent().getBoundsInLocal().getWidth() - handleRadius) {
+                    rect.setX(newX);
+                }
+                double newY = rect.getY() + deltaY ;
+                double newMaxY = newY + rect.getHeight();
+                if (newY >= handleRadius
+                        && newMaxY <= rect.getParent().getBoundsInLocal().getHeight() - handleRadius) {
+                    rect.setY(newY);
+                }
+                mouseLocation.value = new Point2D(event.getSceneX(), event.getSceneY());
+            }
+
+        });
+
+        return rect ;
+    }
+
+    private void setUpDragging(Circle circle, Wrapper<Point2D> mouseLocation) {
+
+        circle.setOnDragDetected(event -> {
+            circle.getParent().setCursor(Cursor.CLOSED_HAND);
+            mouseLocation.value = new Point2D(event.getSceneX(), event.getSceneY());
+        });
+
+        circle.setOnMouseReleased(event -> {
+            circle.getParent().setCursor(Cursor.DEFAULT);
+            mouseLocation.value = null ;
+        });
+    }
+
+    static class Wrapper<T> { T value ; }
 }
