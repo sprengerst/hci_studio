@@ -24,7 +24,7 @@ public class Main extends Application {
 
         Parent root = fxmlLoader.load();
         primaryStage.setTitle("QR-Editor");
-        Scene scene=new Scene(root, 1600, 800);
+        Scene scene=new Scene(root, 1600, 900);
 
         String css = Main.class.getResource("/style.css").toExternalForm();
         scene.getStylesheets().clear();

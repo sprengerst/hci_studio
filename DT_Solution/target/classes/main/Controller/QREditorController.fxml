@@ -10,15 +10,19 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller.QREditorController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller.QREditorController">
    <center>
-      <ImageView fx:id="mImageView" fitHeight="750.0" fitWidth="750.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-         <image>
-            <Image url="@../../qrcode.png" />
-         </image></ImageView>
+       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="650.0" BorderPane.alignment="CENTER">
+         <ImageView fx:id="mBackgroundImageView" fitHeight="650.0" fitWidth="650.0" pickOnBounds="true" preserveRatio="true" />
+          <ImageView fx:id="mImageView" fitHeight="650.0" fitWidth="650.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+             <image>
+                <Image url="@../../qrcode.png" />
+             </image></ImageView>
+       </Pane>
    </center>
    <left>
        <GridPane BorderPane.alignment="CENTER">
@@ -50,8 +54,7 @@
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -86,11 +89,31 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Slider fx:id="mEffectStrengthSlider" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+             <Slider fx:id="mOpacitySlider" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+             <Slider fx:id="mEffectStrengthSlider" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Label text="Opacity  " GridPane.columnIndex="2" GridPane.halignment="RIGHT">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label text="Effect Strength" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                <font>
+                    <Font name="System Bold" size="15.0" />
+                </font>
+            </Label>
          </children>
          <BorderPane.margin>
-            <Insets top="20.0" />
+            <Insets left="20.0" right="20.0" top="20.0" />
          </BorderPane.margin>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
       </GridPane>
    </top>
+   <right>
+
+   </right>
 </BorderPane>

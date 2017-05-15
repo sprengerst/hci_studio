@@ -30,9 +30,9 @@ import javafx.scene.paint.Color;
 public class QREditorController implements Initializable {
 
     @FXML
-    ImageView mImageView;
+    ImageView mImageView,mBackgroundImageView;
     @FXML
-    Slider mSizeSlider,mEffectStrengthSlider;
+    Slider mSizeSlider,mEffectStrengthSlider,mOpacitySlider;
     @FXML
     Button mButton;
     @FXML
@@ -40,14 +40,16 @@ public class QREditorController implements Initializable {
     @FXML
     ChoiceBox mChoiceBoxEffects;
 
-    Color mForegroundColor = Color.BLACK;
-    Color mBackgroundColor = Color.WHITE;
-    Effect effects[];
+    private Color mForegroundColor = Color.BLACK;
+    private Color mBackgroundColor = Color.WHITE;
+    private double mOpacityStrength=1.0;
+    private Effect effects[];
     ObservableList<String> effectNames = FXCollections.observableArrayList();
     private double originalSize = 650;
     private MainController mMainController;
-    final Image image = new Image("/qrcode.png", originalSize, originalSize, true, false);
 
+    final Image image = new Image("/qrcode.png", originalSize, originalSize, true, false);
+    final Image backgroundImage=new Image("/background.png",originalSize,originalSize,true,false);
     public void setScene(MainController mainController) {
 
         mMainController = mainController;
@@ -60,11 +62,13 @@ public class QREditorController implements Initializable {
 
         mChoiceBoxEffects.getSelectionModel().selectFirst();
 
-
-
         mImageView.setPreserveRatio(true);
         mImageView.setFitHeight(originalSize * 0.5);
         mImageView.setImage(image);
+
+        mBackgroundImageView.setPreserveRatio(true);
+        mBackgroundImageView.setFitHeight(originalSize);
+        mBackgroundImageView.setImage(backgroundImage);
 
 
         mSizeSlider.setMin(0);
@@ -78,12 +82,26 @@ public class QREditorController implements Initializable {
         mEffectStrengthSlider.setValue(50);
         mEffectStrengthSlider.setShowTickLabels(true);
         mEffectStrengthSlider.setShowTickMarks(true);
+
         //readImage();
+        mOpacitySlider.setMin(0);
+        mOpacitySlider.setMax(100);
+        mOpacitySlider.setValue(50);
+        mOpacitySlider.setShowTickLabels(true);
+        mOpacitySlider.setShowTickMarks(true);
 
         mSizeSlider.valueProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> ov,
                                 Number old_val, Number new_val) {
                 mImageView.setFitHeight(originalSize * ((new_val.doubleValue()+1) / 100));
+            }
+        });
+
+        mOpacitySlider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number old_val, Number new_val) {
+                mOpacityStrength = (new_val.doubleValue()) / 100;
+                mImageView.setImage(replaceByColor(mForegroundColor, mBackgroundColor,mOpacityStrength));
             }
         });
 
@@ -115,13 +133,16 @@ public class QREditorController implements Initializable {
         mForegroundColorPicker.setValue(mForegroundColor);
         mBackgroundColorPicker.setValue(mBackgroundColor);
 
+        mForegroundColor = mForegroundColorPicker.getValue();
+        mBackgroundColor = mBackgroundColorPicker.getValue();
+        mImageView.setImage(replaceByColor(mForegroundColor, mBackgroundColor,mOpacityStrength));
 
         mForegroundColorPicker.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 mForegroundColor = mForegroundColorPicker.getValue();
                 mBackgroundColor = mBackgroundColorPicker.getValue();
-                mImageView.setImage(replaceByColor(mForegroundColor, mBackgroundColor));
+                mImageView.setImage(replaceByColor(mForegroundColor, mBackgroundColor,mOpacityStrength));
             }
         });
 
@@ -130,7 +151,7 @@ public class QREditorController implements Initializable {
             public void handle(ActionEvent actionEvent) {
                 mForegroundColor = mForegroundColorPicker.getValue();
                 mBackgroundColor = mBackgroundColorPicker.getValue();
-                mImageView.setImage(replaceByColor(mForegroundColor, mBackgroundColor));
+                mImageView.setImage(replaceByColor(mForegroundColor, mBackgroundColor,mOpacityStrength));
             }
         });
 
@@ -169,17 +190,13 @@ public class QREditorController implements Initializable {
 
     }
 
-    public Image setForegroundColor() {
-        return replaceByColor(Color.BLACK, Color.RED);
-    }
 
-    public Image setBackgroundColor() {
-        return replaceByColor(Color.WHITE, Color.RED);
 
-    }
+    public Image replaceByColor(Color newFColor, Color newBColor,double opacity) {
 
-    public Image replaceByColor(Color newFColor, Color newBColor) {
-        System.err.println("Replacing Colors!!");
+        newFColor = new Color(newFColor.getRed(),newFColor.getGreen(),newFColor.getBlue(),opacity);
+        newBColor = new Color(newBColor.getRed(),newBColor.getGreen(),newBColor.getBlue(),opacity);
+
         PixelReader pixelReader = image.getPixelReader();
         // Create WritableImage
         WritableImage wImage = new WritableImage(
