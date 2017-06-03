@@ -6,7 +6,6 @@
 <?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -124,16 +123,7 @@
    </top>
    <right>
     <Pane>
-        <VBox>
-            <Label text="Text to encode:">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-            <TextArea fx:id="mEncodeTextArea" prefWidth="450.0">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin></TextArea>
+        <VBox prefWidth="400.0">
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Label prefHeight="18.0" prefWidth="147.0" text="Error Correction">
@@ -146,11 +136,6 @@
                         <Insets left="30.0" />
                      </HBox.margin>
                   </ChoiceBox>
-                  <Button fx:id="mSubmitButton" mnemonicParsing="false" text="Submit">
-                     <HBox.margin>
-                        <Insets left="50.0" />
-                     </HBox.margin>
-                  </Button>
                </children>
                <VBox.margin>
                   <Insets top="30.0" />
@@ -168,6 +153,23 @@
                         <Insets left="90.0" />
                      </HBox.margin>
                   </ChoiceBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Area of rectangle:">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="mAreaOfRectangleLabel">
+                     <HBox.margin>
+                        <Insets left="50.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
                </children>
             </HBox>
             <opaqueInsets>
