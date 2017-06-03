@@ -1,5 +1,8 @@
 # hci_studio
 
+This work was done for the lecture HCI Studio of University of Salzburg.
+
+It holds a workshop for inspirational bits.
 
 # Used QR Code Generators
 
