@@ -58,11 +58,12 @@ public class MainController implements Initializable {
             AnchorPane.setBottomAnchor(mTabPane, 1.0);
 
 
-            //Job Creation Tab
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("QREditorController.fxml"));
             Node root = fxmlLoader.load();
+
             mCreateBill.setContent(root);
             mCreateBillController =  fxmlLoader.getController();
+            mCreateBillController.setStage(mMainStage);
 
 
 
@@ -103,7 +104,7 @@ public class MainController implements Initializable {
     }
 
 
-    public Stage getMainStaget(){return mMainStage;}
+    public Stage getMainStage(){return mMainStage;}
     public TabPane getTabPane(){return mTabPane;}
     public Scene getScene(){return mScene;}
 

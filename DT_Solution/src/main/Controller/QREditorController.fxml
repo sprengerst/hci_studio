@@ -108,6 +108,11 @@
                     <Font name="System Bold" size="15.0" />
                 </font>
             </Label>
+            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <children>
+                  <Button fx:id="mSetBackgroundButton" mnemonicParsing="false" text="Set Background Image ..." />
+               </children>
+            </HBox>
          </children>
          <BorderPane.margin>
             <Insets left="100.0" right="100.0" top="20.0" />
@@ -150,6 +155,20 @@
                <VBox.margin>
                   <Insets top="30.0" />
                </VBox.margin>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Load Preset">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <ChoiceBox fx:id="mPresetChoiceBox" prefWidth="150.0">
+                     <HBox.margin>
+                        <Insets left="90.0" />
+                     </HBox.margin>
+                  </ChoiceBox>
+               </children>
             </HBox>
             <opaqueInsets>
                <Insets />

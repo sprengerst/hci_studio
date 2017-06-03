@@ -9,6 +9,7 @@ package main.Controller;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
@@ -41,6 +42,8 @@ import javafx.scene.Cursor;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 public class QREditorController implements Initializable {
 
@@ -49,11 +52,11 @@ public class QREditorController implements Initializable {
     @FXML
     Slider mSizeSlider,mEffectStrengthSlider,mOpacitySlider;
     @FXML
-    Button mSubmitButton;
+    Button mSubmitButton,mSetBackgroundButton;
     @FXML
     ColorPicker mBackgroundColorPicker, mForegroundColorPicker;
     @FXML
-    ChoiceBox mChoiceBoxEffects,mErrorChoiceBox;
+    ChoiceBox mChoiceBoxEffects,mErrorChoiceBox,mPresetChoiceBox;
     @FXML
     TextArea mEncodeTextArea;
     @FXML
@@ -63,6 +66,7 @@ public class QREditorController implements Initializable {
     private double mOpacityStrength=1.0;
     private double mEffectStrength=1.0;
     private ErrorCorrectionLevel mErrorCorrectionLevel=ErrorCorrectionLevel.L;
+    private Stage mMainStage;
 
     private Effect effects[];
     ObservableList<String> effectNames = FXCollections.observableArrayList();
@@ -70,9 +74,13 @@ public class QREditorController implements Initializable {
     private MainController mMainController;
 
     Image image = new Image("/qrcode.png", originalSize, originalSize, true, false);
-    final Image backgroundImage=new Image("/background.png",originalSize,originalSize,true,false);
-    public void setScene(MainController mainController) {
+    Image backgroundImage=new Image("/background.png",originalSize,originalSize,true,false);
+    /**public void setScene(MainController mainController) {
         mMainController = mainController;
+    }**/
+
+    public void setStage(Stage mainStage){
+        this.mMainStage=mainStage;
     }
 
 
@@ -84,6 +92,8 @@ public class QREditorController implements Initializable {
         Rectangle rect = createDraggableRectangle(200, 200, 400, 300);
         rect.setFill(Color.NAVY);
 
+
+
         mBorderPane.getChildren().add(rect);
 
         try {
@@ -93,11 +103,15 @@ public class QREditorController implements Initializable {
         }
 
 
-        initEffects();
 
+        initEffects();
+        mPresetChoiceBox.setItems(FXCollections.observableArrayList(
+                "Default","Preset 1","Preset 2","Preset 3","Preset 4","Preset 5"
+
+        ));
         mChoiceBoxEffects.getSelectionModel().selectFirst();
         mErrorChoiceBox.getSelectionModel().selectFirst();
-
+        mPresetChoiceBox.getSelectionModel().selectFirst();
         mImageView.setPreserveRatio(true);
         mImageView.setFitHeight(originalSize * 0.5);
         mImageView.setImage(image);
@@ -163,6 +177,22 @@ public class QREditorController implements Initializable {
             }
         });
 
+        mSetBackgroundButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setTitle("Open Resource File");
+                fileChooser.getExtensionFilters().addAll(
+
+                        new FileChooser.ExtensionFilter("All Files", "*.*"));
+                File selectedFile = fileChooser.showOpenDialog(mMainStage);
+                if (selectedFile != null) {
+                    backgroundImage=new Image(selectedFile.toURI().toString(),originalSize,originalSize,true,false);
+                    mBackgroundImageView.setImage(backgroundImage);
+
+                }
+            }
+        });
         mErrorChoiceBox.getSelectionModel().selectedIndexProperty()
                 .addListener((ObservableValue<? extends Number> observable,
                               Number oldValue, Number newValue) -> {
@@ -172,6 +202,19 @@ public class QREditorController implements Initializable {
                 case 2: mErrorCorrectionLevel=ErrorCorrectionLevel.Q;break;
                 case 3: mErrorCorrectionLevel=ErrorCorrectionLevel.H;break;
             }
+
+                });
+        mPresetChoiceBox.getSelectionModel().selectedIndexProperty()
+                .addListener((ObservableValue<? extends Number> observable,
+                              Number oldValue, Number newValue) -> {
+                    switch(newValue.intValue()){
+                        case 0: System.err.println("Default preset loaded");break;
+                        case 1: System.err.println("Preset 1");break;
+                        case 2: System.err.println("Preset 2");break;
+                        case 3: System.err.println("Preset 3");break;
+                        case 4: System.err.println("Preset 4");break;
+                        case 5: System.err.println("Preset 5");break;
+                    }
 
                 });
 
@@ -415,6 +458,8 @@ public class QREditorController implements Initializable {
                 "Level L (7%)","Level M (15%)",
                 "Level Q (25%)","Level H (30%)"
         ));
+
+
 
     }
 
