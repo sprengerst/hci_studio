@@ -67,12 +67,6 @@ public class MainController implements Initializable {
 
 
 
-            //Setting Creation Tab
-            fxmlLoader = new FXMLLoader(getClass().getResource("CustomSettings.fxml"));
-            root = fxmlLoader.load();
-            mSettings.setContent(root);
-            mSettingsController =  fxmlLoader.getController();
-
 
 
 

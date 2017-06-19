@@ -231,6 +231,12 @@ public class QREditorController implements Initializable {
                     switch (newValue.intValue()) {
                         case 0:
                             System.err.println("Default preset loaded");
+                            resetEffects();
+                            resetSize();
+                            resetOpacity();
+                            resetEffectStrength();
+                            resetColor();
+                            resetErrorCorrectionLevel();
                             break;
                         case 1:
                             //load background image of beer
@@ -240,7 +246,7 @@ public class QREditorController implements Initializable {
                             resetEffects();
                             //set default size
                             resetSize();
-                            resetOpacity();
+                            mOpacitySlider.setValue(75);
                             resetEffectStrength();
                             resetColor();
                             break;
@@ -262,7 +268,7 @@ public class QREditorController implements Initializable {
                             resetColor();
                             //generate low quality code
                             try {
-                                mErrorCorrectionLevel = ErrorCorrectionLevel.L;
+                                resetErrorCorrectionLevel();
                                 image = SwingFXUtils.toFXImage(createQRImage(loremIpsum, (int) originalSize, mErrorCorrectionLevel), null);
                                 mImageView.setImage(image);
                             } catch (Exception ex) {
@@ -278,6 +284,7 @@ public class QREditorController implements Initializable {
                             resetColor();
                             try {
                                 mErrorCorrectionLevel = ErrorCorrectionLevel.H;
+                                mErrorChoiceBox.getSelectionModel().selectLast();
                                 image = SwingFXUtils.toFXImage(createQRImage(loremIpsum, (int) originalSize, mErrorCorrectionLevel), null);
                                 mImageView.setImage(image);
                             } catch (Exception ex) {
@@ -292,7 +299,7 @@ public class QREditorController implements Initializable {
         mChoiceBoxEffects.getSelectionModel().selectedIndexProperty()
                 .addListener((ObservableValue<? extends Number> observable,
                               Number oldValue, Number newValue) -> {
-                    if (newValue.intValue() == 2 || newValue.intValue() == 3 || newValue.intValue() == 7)
+                    if (newValue.intValue() == 2)
                         mEffectStrengthSlider.setDisable(true);
                     else {
                         mEffectStrengthSlider.setDisable(false);
@@ -325,6 +332,12 @@ public class QREditorController implements Initializable {
             }
         });
 
+
+    }
+
+    private void resetErrorCorrectionLevel(){
+        mErrorCorrectionLevel = ErrorCorrectionLevel.L;
+        mErrorChoiceBox.getSelectionModel().selectFirst();
 
     }
 
@@ -367,19 +380,19 @@ public class QREditorController implements Initializable {
             ((BoxBlur) effects[selectedIndex]).setIterations((int) (mEffectStrength / 10));
             ((BoxBlur) effects[selectedIndex]).setHeight(mEffectStrength / 3);
             ((BoxBlur) effects[selectedIndex]).setWidth(mEffectStrength / 3);
-        } else if (selectedIndex == 4) {
+        } else if (selectedIndex == 3) {
             //Disable effect strength slider
             ((DropShadow) effects[selectedIndex]).setRadius(mEffectStrength);
             ((DropShadow) effects[selectedIndex]).setOffsetX(mEffectStrength);
             ((DropShadow) effects[selectedIndex]).setOffsetY(mEffectStrength);
             ((DropShadow) effects[selectedIndex]).setColor(Color.GREY);
-        } else if (selectedIndex == 5) {
+        } else if (selectedIndex == 4) {
             ((GaussianBlur) effects[selectedIndex]).setRadius((63 * (int) mEffectStrength) / 100);
-        } else if (selectedIndex == 6) {
+        } else if (selectedIndex == 5) {
             ((Glow) effects[selectedIndex]).setLevel((mEffectStrength / 100));
-        } else if (selectedIndex == 8) {
+        } else if (selectedIndex == 6) {
             ((MotionBlur) effects[selectedIndex]).setRadius(mEffectStrength);
-        } else if (selectedIndex == 9) {
+        } else if (selectedIndex == 7) {
             ((Reflection) effects[selectedIndex]).setFraction(mEffectStrength / 100);
         }
 
@@ -481,12 +494,7 @@ public class QREditorController implements Initializable {
         boxBlur.setHeight(50 / 3);
         boxBlur.setIterations(5);
 
-        //ColorAdjust effect
-        ColorAdjust colorAdjust = new ColorAdjust();
-        colorAdjust.setContrast(0.5);
-        colorAdjust.setHue(-0.05);
-        colorAdjust.setBrightness(0.5);
-        colorAdjust.setSaturation(0.5);
+
 
         //DisplacementMap effect
         FloatMap floatMap = new FloatMap();
@@ -516,13 +524,6 @@ public class QREditorController implements Initializable {
         Glow glow = new Glow(1.0);
 
 
-        //Lighting effect
-        Light.Distant light = new Light.Distant();
-        light.setAzimuth(-135.0);
-        light.setColor(Color.YELLOW);
-        Lighting lighting = new Lighting();
-        lighting.setLight(light);
-        lighting.setSurfaceScale(150.0f);
 
         //MotionBlur effect
         MotionBlur motionBlur = new MotionBlur();
@@ -534,25 +535,22 @@ public class QREditorController implements Initializable {
         reflection.setFraction(0.7);
 
 
-        effects = new Effect[11];
+        effects = new Effect[8];
         effects[0] = null;
         effects[1] = boxBlur;
-        effects[2] = colorAdjust;
-        effects[3] = displacementMap;
-        effects[4] = dropShadow;
-        effects[5] = gaussianBlur;
-        effects[6] = glow;
-        effects[7] = lighting;
-        effects[8] = motionBlur;
-        effects[9] = reflection;
+        effects[2] = displacementMap;
+        effects[3] = dropShadow;
+        effects[4] = gaussianBlur;
+        effects[5] = glow;
+        effects[6] = motionBlur;
+        effects[7] = reflection;
 
 
         mChoiceBoxEffects.setItems(
                 FXCollections.observableArrayList(
-                        "null", "BoxBlur", "ColorAdjust",
+                        "null", "BoxBlur",
                         "DisplacementMap", "DropShadow",
-                        "GaussianBlur", "Glow",
-                        "Lighting", "MotionBlur",
+                        "GaussianBlur", "Glow", "MotionBlur",
                         "Reflection"
                 ));
         mErrorChoiceBox.setItems(FXCollections.observableArrayList(
@@ -690,6 +688,5 @@ public class QREditorController implements Initializable {
     }
 
 
-    static String loremIpsum = " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque id lacus feugiat eros malesuada placerat. Suspendisse " +
-            "lacus velit, tincidunt et arcu vel, sagittis hendrerit velit. In diam turpis, semper sed lorem nec, ullamcorper cursus lectus. Maecenas ante diam";
+    static String loremIpsum = " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque id lacus feugiat eros malesuada placerat. Suspendisse ";
 }

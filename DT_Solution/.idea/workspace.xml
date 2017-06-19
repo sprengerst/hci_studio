@@ -24,27 +24,16 @@
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="QREditorController.fxml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/Controller/QREditorController.fxml">
-          <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-            <state />
-          </provider>
           <provider editor-type-id="text-editor">
-            <state relative-caret-position="3276">
+            <state relative-caret-position="3312">
               <caret line="184" column="0" lean-forward="false" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
               <folding>
                 <marker date="1496483652109" expanded="true" signature="5758:7813" ph="..." />
-                <marker date="1496483652109" expanded="true" signature="5799:6426" ph="..." />
-                <marker date="1496483652109" expanded="true" signature="6131:6280" ph="..." />
-                <marker date="1496483652109" expanded="true" signature="6336:6406" ph="..." />
-                <marker date="1496483652109" expanded="true" signature="6482:6970" ph="..." />
-                <marker date="1496483652109" expanded="true" signature="6508:6950" ph="..." />
-                <marker date="1496483652109" expanded="true" signature="6553:6701" ph="..." />
-                <marker date="1496483652109" expanded="true" signature="6581:6674" ph="..." />
-                <marker date="1496483652109" expanded="true" signature="6774:6923" ph="..." />
-                <marker date="1496483652109" expanded="true" signature="6809:6892" ph="..." />
-                <marker date="1496483652109" expanded="true" signature="7648:7702" ph="..." />
-                <marker date="1496483652109" expanded="true" signature="7724:7797" ph="..." />
               </folding>
             </state>
+          </provider>
+          <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+            <state />
           </provider>
         </entry>
       </file>
@@ -53,27 +42,20 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="4572">
               <caret line="254" column="0" lean-forward="false" selection-start-line="254" selection-start-column="0" selection-end-line="254" selection-end-column="0" />
-              <folding>
-                <marker date="1494785486520" expanded="true" signature="1909:1923" ph="..." />
-                <marker date="1494785486520" expanded="true" signature="2668:2682" ph="..." />
-                <marker date="1494785486520" expanded="true" signature="2922:2936" ph="..." />
-                <marker date="1494785486520" expanded="true" signature="3364:3378" ph="..." />
-                <marker date="1494785486520" expanded="true" signature="3560:3574" ph="..." />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="QREditorController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="QREditorController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/Controller/QREditorController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="223" column="19" lean-forward="false" selection-start-line="223" selection-start-column="19" selection-end-line="223" selection-end-column="19" />
+            <state relative-caret-position="348">
+              <caret line="309" column="58" lean-forward="true" selection-start-line="309" selection-start-column="58" selection-end-line="309" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2754#2755#0" expanded="true" />
-                <element signature="e#14230#14231#0" expanded="true" />
-                <element signature="e#14280#14281#0" expanded="true" />
+                <element signature="e#14698#14699#0" expanded="true" />
+                <element signature="e#14748#14749#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -102,12 +84,9 @@
       <file leaf-file-name="MainController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/Controller/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="810">
-              <caret line="61" column="42" lean-forward="false" selection-start-line="61" selection-start-column="42" selection-end-line="61" selection-end-column="42" />
-              <folding>
-                <element signature="n#!!doc" expanded="false" />
-                <element signature="imports" expanded="false" />
-              </folding>
+            <state relative-caret-position="409">
+              <caret line="68" column="0" lean-forward="true" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -124,14 +103,14 @@
       </file>
       <file leaf-file-name="CustomSettings.fxml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/Controller/CustomSettings.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder">
-            <state />
-          </provider>
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
               <caret line="15" column="24" lean-forward="false" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
               <folding />
             </state>
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder">
+            <state />
           </provider>
         </entry>
       </file>
@@ -140,25 +119,24 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="450">
               <caret line="32" column="37" lean-forward="false" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#1142#1143#0" expanded="false" />
-                <element signature="e#1170#1171#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.fxml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.fxml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/Controller/Main.fxml">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="6" column="131" lean-forward="false" selection-start-line="6" selection-start-column="131" selection-end-line="6" selection-end-column="131" />
+              <folding>
+                <marker date="1497871197887" expanded="true" signature="778:791" ph="..." />
+                <marker date="1497871197887" expanded="true" signature="778:830" ph="..." />
+              </folding>
+            </state>
+          </provider>
           <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
             <state />
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="7" column="131" lean-forward="false" selection-start-line="7" selection-start-column="131" selection-end-line="7" selection-end-column="131" />
-              <folding />
-            </state>
           </provider>
         </entry>
       </file>
@@ -174,10 +152,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>PerspectiveTra</find>
-      <find>Inner</find>
-      <find>SizeSlider</find>
-      <find>Neue</find>
       <find>ColorPicker</find>
       <find>mEff</find>
       <find>replaceByColor</find>
@@ -204,6 +178,10 @@
       <find>resetOpac</find>
       <find>mOpacitySlide</find>
       <find>mOpacitySlid</find>
+      <find>LoremIpsu</find>
+      <find>resetOpacity</find>
+      <find>resetEffects</find>
+      <find>mEffectStreng</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -252,16 +230,16 @@
         <option value="$USER_HOME$/Together/TogetherWebsite/main/index.html" />
         <option value="$PROJECT_DIR$/src/main/Controller/SettingsController.java" />
         <option value="$PROJECT_DIR$/src/main/Controller/CustomSettings.fxml" />
-        <option value="$PROJECT_DIR$/src/main/Controller/Main.fxml" />
         <option value="$PROJECT_DIR$/src/main/Controller/Main.java" />
         <option value="$USER_HOME$/Downloads/WordSearch.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$USER_HOME$/Dropbox/Multimedia/exercises/a8-1.html" />
         <option value="$USER_HOME$/Dropbox/Multimedia/exercises/a8-2.html" />
         <option value="$USER_HOME$/public_html/a8-3.cgi" />
-        <option value="$PROJECT_DIR$/src/main/Controller/MainController.java" />
         <option value="$PROJECT_DIR$/src/main/Controller/QREditorController.fxml" />
         <option value="$PROJECT_DIR$/src/main/Controller/QREditorController.java" />
+        <option value="$PROJECT_DIR$/src/main/Controller/MainController.java" />
+        <option value="$PROJECT_DIR$/src/main/Controller/Main.fxml" />
       </list>
     </option>
   </component>
@@ -327,8 +305,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -397,7 +376,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -904,11 +882,12 @@
       <workItem from="1495281914810" duration="34000" />
       <workItem from="1496446983001" duration="2565000" />
       <workItem from="1496478870394" duration="4849000" />
+      <workItem from="1497868752157" duration="2207000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="234782000" />
+    <option name="totallyTimeSpent" value="236989000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1920" height="1011" extended-state="6" />
@@ -917,26 +896,26 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32349727" sideWeight="0.4909285" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32349727" sideWeight="0.48879403" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.057923496" sideWeight="0.26467448" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.009071505" sideWeight="0.49460918" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.057923496" sideWeight="0.7353255" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.057923496" sideWeight="0.2710779" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.008537887" sideWeight="0.49460918" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.057923496" sideWeight="0.72892207" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26010928" sideWeight="0.49573106" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14781217" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14834578" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2497332" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3206934" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3206934" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1089,6 +1068,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/Together/TogetherWebsite/main/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4572">
+          <caret line="254" column="0" lean-forward="false" selection-start-line="254" selection-start-column="0" selection-end-line="254" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Controller/QREditorController.fxml">
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="3312">
+          <caret line="184" column="0" lean-forward="false" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
+          <folding>
+            <marker date="1496483652109" expanded="true" signature="5758:7813" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Controller/QREditorController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="309" column="58" lean-forward="true" selection-start-line="309" selection-start-column="58" selection-end-line="309" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#14698#14699#0" expanded="true" />
+            <element signature="e#14748#14749#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Controller/CustomSettings.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
@@ -1104,11 +1116,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
           <caret line="32" column="37" lean-forward="false" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1142#1143#0" expanded="false" />
-            <element signature="e#1170#1171#0" expanded="false" />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Controller/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="409">
+          <caret line="68" column="0" lean-forward="true" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1117,70 +1133,11 @@
         <state />
       </provider>
       <provider editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="131" lean-forward="false" selection-start-line="7" selection-start-column="131" selection-end-line="7" selection-end-column="131" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Together/TogetherWebsite/main/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4572">
-          <caret line="254" column="0" lean-forward="false" selection-start-line="254" selection-start-column="0" selection-end-line="254" selection-end-column="0" />
+        <state relative-caret-position="108">
+          <caret line="6" column="131" lean-forward="false" selection-start-line="6" selection-start-column="131" selection-end-line="6" selection-end-column="131" />
           <folding>
-            <marker date="1494785486520" expanded="true" signature="1909:1923" ph="..." />
-            <marker date="1494785486520" expanded="true" signature="2668:2682" ph="..." />
-            <marker date="1494785486520" expanded="true" signature="2922:2936" ph="..." />
-            <marker date="1494785486520" expanded="true" signature="3364:3378" ph="..." />
-            <marker date="1494785486520" expanded="true" signature="3560:3574" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/Controller/MainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="61" column="42" lean-forward="false" selection-start-line="61" selection-start-column="42" selection-end-line="61" selection-end-column="42" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/Controller/QREditorController.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="3276">
-          <caret line="184" column="0" lean-forward="false" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
-          <folding>
-            <marker date="1496483652109" expanded="true" signature="5758:7813" ph="..." />
-            <marker date="1496483652109" expanded="true" signature="5799:6426" ph="..." />
-            <marker date="1496483652109" expanded="true" signature="6131:6280" ph="..." />
-            <marker date="1496483652109" expanded="true" signature="6336:6406" ph="..." />
-            <marker date="1496483652109" expanded="true" signature="6482:6970" ph="..." />
-            <marker date="1496483652109" expanded="true" signature="6508:6950" ph="..." />
-            <marker date="1496483652109" expanded="true" signature="6553:6701" ph="..." />
-            <marker date="1496483652109" expanded="true" signature="6581:6674" ph="..." />
-            <marker date="1496483652109" expanded="true" signature="6774:6923" ph="..." />
-            <marker date="1496483652109" expanded="true" signature="6809:6892" ph="..." />
-            <marker date="1496483652109" expanded="true" signature="7648:7702" ph="..." />
-            <marker date="1496483652109" expanded="true" signature="7724:7797" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/Controller/QREditorController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="223" column="19" lean-forward="false" selection-start-line="223" selection-start-column="19" selection-end-line="223" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2754#2755#0" expanded="true" />
-            <element signature="e#14230#14231#0" expanded="true" />
-            <element signature="e#14280#14281#0" expanded="true" />
+            <marker date="1497871197887" expanded="true" signature="778:791" ph="..." />
+            <marker date="1497871197887" expanded="true" signature="778:830" ph="..." />
           </folding>
         </state>
       </provider>
